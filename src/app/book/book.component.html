@@ -1,0 +1,24 @@
+<div>
+    <ul>
+        <mat-card class="book-card" *ngFor="let book of books">
+            
+            <mat-card-header>
+                <mat-card-title>{{book.title}}</mat-card-title>
+                <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+            </mat-card-header>
+            <hr>
+            <mat-card-content>
+                <p>Genre: {{book.genre}}</p>
+                <p>Price: {{book.price}}</p>
+                <p>Amount: {{book.amount}}</p>
+            </mat-card-content>
+
+            <mat-card-actions>
+            <a routerLink="apts" routerLinkActive="active">View</a>  
+            </mat-card-actions>
+
+        </mat-card>
+    </ul>
+</div>
+
+

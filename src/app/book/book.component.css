@@ -7,3 +7,18 @@
     margin: 30px 30px 30px 30px;
     background: #3f853c;
   }
+
+
+  input.ng-touched.ng-invalid {border:solid red 2px;}
+  input.ng-touched.ng-valid {border:solid green 2px;}
+
+
+  TABLE {
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    border: 2px solid white; /* Прячем рамку вокруг таблицы */
+   }
+   TD, TH {
+    padding: 15px; /* Поля вокруг содержимого таблицы */
+    border: 1px solid maroon; /* Параметры рамки */
+    text-align: left; /* Выравнивание по левому краю */
+   }

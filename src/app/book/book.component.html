@@ -1,24 +1,77 @@
-<div>
-    <ul>
-        <mat-card class="book-card" *ngFor="let book of books">
-            
-            <mat-card-header>
-                <mat-card-title>{{book.title}}</mat-card-title>
-                <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
-            </mat-card-header>
-            <hr>
-            <mat-card-content>
-                <p>Genre: {{book.genre}}</p>
-                <p>Price: {{book.price}}</p>
-                <p>Amount: {{book.amount}}</p>
-            </mat-card-content>
+<h1>Список книг</h1>
+<input type="button" value="Добавить" class="btn btn-default" (click)="addBook()" />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Название</td>
+            <td>Автор</td>
+            <td>Жанр</td>
+            <td>Цена</td>
+            <td>Количество</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books">
+            <ng-template [ngTemplateOutlet]="loadTemplate(book) ?? null" 
+                        [ngTemplateOutletContext]="{ $implicit: book}">
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+<div>{{statusMessage}}</div>
+    
+    
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-book>
+    <td>{{book.id}}</td>
+    <td>{{book.title}}</td>
+    <td>{{book.author}}</td>
+    <td>{{book.genre}}</td>
+    <td>{{book.price}}</td>
+    <td>{{book.amount}}</td>
+    <td>
+        <input type="button" value="Изменить" class="btn btn-default" (click)="editBook(book)" />
+    </td>
+    <td>
+        <input type="button" value="Удалить" (click)="deleteBook(book)" class="btn btn-danger" />
+    </td>
+</ng-template>
+   
 
-            <mat-card-actions>
-            <a routerLink="apts" routerLinkActive="active">View</a>  
-            </mat-card-actions>
 
-        </mat-card>
-    </ul>
-</div>
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <td>
+        <input type="text" [(ngModel)]="$any(editedBook).id" readonly disabled class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="$any(editedBook).title" class="form-control" #title="ngModel" required />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="$any(editedBook).author" class="form-control" #author="ngModel" required/>
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="$any(editedBook).genre" class="form-control" #genre="ngModel" required />
+    </td>
+
+    <td>
+        <input type="number" [(ngModel)]="$any(editedBook).price" class="form-control" #price="ngModel" required/>
+    </td>
+
+    <td>
+        <input type="number" [(ngModel)]="$any(editedBook).amount" class="form-control" #amount="ngModel" required/>
+    </td>
+
+    <td>
+        <input type="button" value="Сохранить" (click)="saveBook()" class="btn btn-success"
+          [disabled]="title.invalid || author.invalid || genre.invalid || price.invalid || amount.invalid"/>
+    </td>
+    <td>
+        <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
+    </td>
+</ng-template>
 
 

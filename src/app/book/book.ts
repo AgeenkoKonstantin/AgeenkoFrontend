@@ -1,11 +1,13 @@
-export interface Ibook{
-    id: number,
-    title: string,
-    author: string,
-    genre: string,
-    price: number,
-    amount: number
 
+
+export class Ibook{
+    constructor(
+        public id: string,
+        public title: string,
+        public author: string,
+        public genre: string,
+        public price: number,
+        public amount: number) { }
 }
 
 /*

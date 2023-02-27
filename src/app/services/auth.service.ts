@@ -18,7 +18,9 @@ export class AuthService {
               map(res=> 
               {
                 if (res.status == 200)
-                  localStorage.setItem("token", res.body.token);                
+                  localStorage.setItem("token", res.body.token);   
+                  console.log(res.body.token)
+                             
                 return res.status;
               }),
               catchError(error => {

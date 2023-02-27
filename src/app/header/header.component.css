@@ -1,0 +1,37 @@
+.h1{
+    margin-left: 10px;
+}
+
+.icon {
+    display: block;
+    width: 100px;
+    height: 76px;
+    fill: burlywood;
+}
+
+.header {
+    padding: 2px 40px;
+    text-align: left;
+    background: #02415a;
+    color: white;
+    font-family:monospace;
+    font-size: 25px;
+  }
+  
+  mat-nav-list.list-horizontal {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    background: #02415a;
+    color: white;
+    font-family:monospace;
+   }
+   .text-nav {
+    color: white;
+    font-family:monospace;
+    font-size: 20px;
+   }
+
+   .a {
+    margin-left: 50px;
+   }

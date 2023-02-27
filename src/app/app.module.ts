@@ -1,5 +1,4 @@
 
-import { BookService } from './book/book.service';
 import { AppComponent } from './app.component';
 
 import { NgModule } from '@angular/core';
@@ -15,11 +14,22 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTreeModule} from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptorService } from './services/http-interceptor.service';
+import { BookStatsComponent } from './book-stats/book-stats.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    BookStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +43,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatStepperModule,
     MatTabsModule,
     MatTreeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ],
   providers: [
-    BookService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    }
+
   ],
   bootstrap: [AppComponent]
 })
